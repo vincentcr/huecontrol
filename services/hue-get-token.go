@@ -1,4 +1,4 @@
-package main
+package services
 
 import (
 	"bufio"
@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"net/http/cookiejar"
 	"net/url"
 	"os"
 	"regexp"
@@ -21,24 +20,25 @@ const BASE_URL = "https://www.meethue.com"
 
 var httpClient http.Client
 
-func init() {
-	jar, err := cookiejar.New(nil)
-	if err != nil {
-		panic(err.Error())
-	}
-	httpClient = http.Client{Jar: jar}
-
-}
-
-func main() {
-	username, password := getCredentials()
-	token, err := getToken(username, password)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
-	} else {
-		fmt.Println("Token:", token)
-	}
-}
+//
+// func init() {
+// 	jar, err := cookiejar.New(nil)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	httpClient = http.Client{Jar: jar}
+//
+// }
+//
+// func main() {
+// 	username, password := getCredentials()
+// 	token, err := getToken(username, password)
+// 	if err != nil {
+// 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+// 	} else {
+// 		fmt.Println("Token:", token)
+// 	}
+// }
 
 func getCredentials() (string, string) {
 	var password string

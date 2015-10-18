@@ -1,0 +1,13 @@
+{
+  "default" : {
+    "publicURL" : "http://localhost:3000",
+    "redisURL" : "localhost:6379"
+  },
+  "dev" : {
+    "postgresURL" : "dbname=huecontrol_dev user=huecontrol_dev password=huecontrol_dev_secret sslmode=disable"
+  },
+  "test" : {
+    "postgresURL" : "dbname=huecontrol_test user=huecontrol_test password=huecontrol_test_secret sslmode=disable"
+  }
+
+}
