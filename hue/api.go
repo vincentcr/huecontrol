@@ -62,7 +62,7 @@ func (c *Client) GetLights() ([]Light, error) {
 }
 
 func (c *Client) GetLight(id string) (Light, error) {
-	var light Light
+	light := Light{ID: id}
 	err := c.get("/lights/"+id, &light)
 	return light, err
 }
@@ -90,7 +90,7 @@ func (c *Client) GetGroups() ([]Group, error) {
 }
 
 func (c *Client) GetGroup(id string) (Group, error) {
-	var group Group
+	group := Group{ID: id}
 	err := c.get("/groups/"+id, &group)
 	return group, err
 }
