@@ -3,15 +3,36 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"reflect"
 
 	"github.com/vincentcr/huecontrol/hue"
 )
 
 func main() {
-
+	hostname, username := loadConfig()
+	client := hue.New(hostname, username) //"10.0.0.15", "38d7fa8a6e94c1718bb02f62203e733"
 	runMethod(client, "GetGroups")
 	runMethod(client, "GetGroup", "1")
+}
+
+func loadConfig() (string, string) {
+	contents, err := ioutil.ReadFile("./.config.json")
+	if err != nil {
+		panic(fmt.Errorf("Unable to read config file: %v", err))
+	}
+
+	var config struct {
+		Hostname string
+		Username string
+	}
+
+	err = json.Unmarshal(contents, &config)
+	if err != nil {
+		panic(fmt.Errorf("Unable to parse config file: %v", err))
+	}
+
+	return config.Hostname, config.Username
 }
 
 func runMethod(client *hue.Client, name string, args ...interface{}) {

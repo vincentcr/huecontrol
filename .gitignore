@@ -2,3 +2,4 @@ node_modules
 main
 huecontrol
 test-remote-api.js
+.config.json
