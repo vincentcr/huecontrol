@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	client := hue.New("10.0.0.15", "38d7fa8a6e94c1718bb02f62203e733")
 
 	runMethod(client, "GetGroups")
 	runMethod(client, "GetGroup", "1")
